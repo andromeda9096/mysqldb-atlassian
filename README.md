@@ -2,6 +2,7 @@
 ##database modified for atlassian software##
 
 docker volume create --name mysqlvolume
+
 docker run --name atlassian-mysqldb --restart unless-stopped -v mysqlvolume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=your_strong_password -p 6306:3306 -d andromeda9096/mysqldb:5.7.30
 
 =>mysql url= hostip:6306
