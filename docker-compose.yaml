@@ -1,0 +1,42 @@
+#---------------------------------------------
+version: "3.3"
+
+#create  network
+networks:               
+  atlassian-network: 
+    driver: bridge
+
+#volumes:
+#  h2g-db:
+#  h2g-wp:
+#---------------------------------------------
+services:
+
+  atlassian-database:
+    image: andromeda9096/mysqldb:5.7.30
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_strong_password
+      MYSQL_PASSWORD: your_strong_password
+      MYSQL_DATABASE: atlassian
+      MYSQL_USER: atlassian 
+    volumes:
+      - ./db-v:/var/lib/mysql
+    ports:
+      - "6306:3306"
+    networks:
+      - atlassian-network
+
+#---------------------------------------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: atlassian-database
+    ports:
+      - "8080:80"
+    networks:
+      - atlassian-network
+
+#----------------------------------------------
+#END-------------------------------------------
