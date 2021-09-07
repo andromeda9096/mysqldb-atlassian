@@ -1,4 +1,5 @@
-# install mysqldb 5.7.30 on docker
+# install mysqldb 5.7.30 + phpmyadmin Standalone
+
 ### database modified for atlassian software
 ```
 docker volume create --name mysqlvolume
@@ -8,12 +9,19 @@ docker run --name atlassian-mysqldb --restart unless-stopped -v mysqlvolume:/var
 #### note
 mysql url= hostip:6306
 
-# install phpmyadmin on docker
+
 ### for manage mysqldb
 ```
 docker run --name phpmyadmin --restart unless-stopped -d -e PMA_HOST=yourdatabase_server_ip -e PMA_PORT=6306 -p 8080:80 phpmyadmin
 ```
-### Browser
+
+# install mysqldb 5.7.30 + phpmyadmin using docker-compose
+- clone this repos
+- run docker-compose up -d
+
+# Config database on your  Web-Browser
+### phpmyadmin
+
 http:host_ip:8080
 
 user:root
